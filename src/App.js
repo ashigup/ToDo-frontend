@@ -10,12 +10,12 @@ const App = () => {
   const [tasks, setTasks]= useState([]);
   const [newTask, setNewTask] = useState("");
   const fetchData = () => {
-    // fetch("http://localhost:8080/api/v1/todos").then(res => res.json()).then(res => {
-    //   setTasks(res);
-    //   console.log("Here in 6", res);
-    // }).catch(err => {
-    //   console.log(err);
-    // })
+    fetch("http://localhost:8080/api/v1/todos").then(res => res.json()).then(res => {
+      setTasks(res);
+      console.log("Here in 6", res);
+    }).catch(err => {
+      console.log(err);
+    })
   }
   useEffect(() => {
  fetchData();
@@ -29,18 +29,18 @@ const App = () => {
       task: newTask
     };
     
-    // await fetch(url, {
-    //     method: 'POST',
-    //     headers: {
-    //         // 'Accept': 'JSON"',
-    //         'Content-Type': 'application/json',
-    //     },
-    //     body: JSON.stringify(data),
-    // });
-    // setNewTask("");
+    await fetch(url, {
+        method: 'POST',
+        headers: {
+            // 'Accept': 'JSON"',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+    });
+    setNewTask("");
       }}> Add Task</button>
       <ol>
-      {/* {tasks.map(task => <li key={task.taskId} onClick={() => {
+      {tasks.map(task => <li key={task.taskId} onClick={() => {
         
          fetch("http://localhost:8080/api/v1/todos/delete", {
             method: 'POST',
@@ -50,9 +50,9 @@ const App = () => {
             },
             body: JSON.stringify(task),
         });
-      }}> */}
-        {/* {task.name} */}
-      {/* </li>)} */}
+      }}> 
+         {task.name} 
+     </li>)} 
       </ol>
       Hello There
     </div>
