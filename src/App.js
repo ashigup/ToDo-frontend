@@ -9,6 +9,7 @@ import React, { useEffect, useState } from 'react'
 const App = () => {
   const [tasks, setTasks]= useState([]);
   const [newTask, setNewTask] = useState("");
+  const [refresh, setRefresh] = useState(false);
   const fetchData = () => {
     fetch("https://todo-backend-xlze.onrender.com/api/v1/todos").then(res => res.json()).then(res => {
       setTasks(res);
@@ -19,7 +20,7 @@ const App = () => {
   }
   useEffect(() => {
  fetchData();
-  },[])
+  },[refresh])
   return (
     <div>
       <input type='text' placeholder='Enter new task to add' value={newTask} onChange={(evt) => setNewTask(evt.target.value)}/> <button onClick={async () => {
@@ -38,6 +39,7 @@ const App = () => {
         body: JSON.stringify(data),
     });
     setNewTask("");
+    setRefresh(prev => !prev)
       }}> Add Task</button>
       <ol>
       {tasks.map(task => <li key={task.taskId} onClick={() => {
@@ -50,6 +52,7 @@ const App = () => {
             },
             body: JSON.stringify(task),
         });
+        setRefresh(prev => !prev)
       }}> 
          {task.name} 
      </li>)} 
