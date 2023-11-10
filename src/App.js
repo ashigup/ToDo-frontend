@@ -23,6 +23,14 @@ const App = () => {
   },[refresh])
   return (
     <div>
+      <h1>Hola Bois</h1>
+      <h2>Alokit</h2>
+      <h2>Approv</h2>
+      <h2>Ashiwini</h2>
+      <h2>Bhai</h2>
+      <h2>Verma</h2>
+      
+      <h3>click on the task to delete it</h3>
       <input type='text' placeholder='Enter new task to add' value={newTask} onChange={(evt) => setNewTask(evt.target.value)}/> <button onClick={async () => {
     const url = 'https://todo-backend-xlze.onrender.com/api/v1/todos/create-task';
 
@@ -57,7 +65,6 @@ const App = () => {
          {task.name} 
      </li>)} 
       </ol>
-      Hello There
     </div>
   )
 }
