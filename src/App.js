@@ -10,7 +10,7 @@ const App = () => {
   const [tasks, setTasks]= useState([]);
   const [newTask, setNewTask] = useState("");
   const fetchData = () => {
-    fetch("http://localhost:8080/api/v1/todos").then(res => res.json()).then(res => {
+    fetch("https://todo-backend-xlze.onrender.com/api/v1/todos").then(res => res.json()).then(res => {
       setTasks(res);
       console.log("Here in 6", res);
     }).catch(err => {
@@ -23,7 +23,7 @@ const App = () => {
   return (
     <div>
       <input type='text' placeholder='Enter new task to add' value={newTask} onChange={(evt) => setNewTask(evt.target.value)}/> <button onClick={async () => {
-    const url = 'http://localhost:8080/api/v1/todos/create-task';
+    const url = 'https://todo-backend-xlze.onrender.com/api/v1/todos/create-task';
 
     const data = {
       task: newTask
@@ -42,7 +42,7 @@ const App = () => {
       <ol>
       {tasks.map(task => <li key={task.taskId} onClick={() => {
         
-         fetch("http://localhost:8080/api/v1/todos/delete", {
+         fetch("https://todo-backend-xlze.onrender.com/api/v1/todos/delete", {
             method: 'POST',
             headers: {
                 // 'Accept': 'JSON"',
